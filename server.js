@@ -5,15 +5,28 @@
 /* ***********************
  * Require Statements
  *************************/
-const express = require("express")  //imports the express package
+const express = require("express") //imports the express package
+const expressLayouts = require("express-ejs-layouts") //import them into our application and use them, declare EJS as being our "view engine".
 const env = require("dotenv").config()
 const app = express() //creates the "application"
 const static = require("./routes/static")
 
 /* ***********************
+ * View Engine and Templates
+ *************************/
+app.set("view engine", "ejs")
+app.use(expressLayouts)
+app.set("layout", "./layouts/layout") // not at views root
+
+/* ***********************
  * Routes
  *************************/
+//Notice that instead of router.use, it is now app.use, meaning that the application itself will use this resource.
 app.use(static)
+//Index Route
+app.get("/", function(req, res){
+  res.render("index", {title: "Home"})
+})
 
 /* ***********************
  * Local Server host name and port are defined
