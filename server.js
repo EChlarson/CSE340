@@ -5,9 +5,9 @@
 /* ***********************
  * Require Statements
  *************************/
-const express = require("express")
+const express = require("express")  //imports the express package
 const env = require("dotenv").config()
-const app = express()
+const app = express() //creates the "application"
 const static = require("./routes/static")
 
 /* ***********************
@@ -16,7 +16,7 @@ const static = require("./routes/static")
 app.use(static)
 
 /* ***********************
- * Local Server Information
+ * Local Server host name and port are defined
  * Values from .env (environment) file
  *************************/
 const port = process.env.PORT
