@@ -5,8 +5,150 @@
   box-sizing: border-box;
 }
 
+html {
+  html {font-size: 62.5%}
+}
+
+/* Box*/
+.box {
+  position: absolute;
+  background-color: white;
+  border: solid 0.25rem rgb(13, 149, 228);
+  border-radius: 1rem;
+  top: 3%;
+  bottom: 3%;
+  right: 8%;
+  left: 8%;
+  z-index: -1;
+}
+
+/* body */
+body {
+  margin: 0;
+  background-image: url(/images/site/checkerboard.jpg);
+  background-repeat: repeat;
+  background-size: 30rem;
+  background-position: top left;
+  padding: 5% 12%;
+  position: relative;
+}
+
+h1 {
+  font-size: 40px;
+}
+
+h2 {
+  font-size: 30px;
+}
+
+ul, a, button, p {
+  font-size: 20px;
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.siteName a {
+  text-decoration: none;
+  color: rgb(48, 48, 48);
+  text-transform: uppercase;
+  font-size: 50px;
+}
+
+#tools a {
+  text-decoration: none;
+  color: rgb(48, 48, 48);
+  text-transform: uppercase;
+}
+
+/* Navigation */
+nav {
+  background-color: rgb(48, 48, 48);
+  color: white;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+nav li {
+  padding: 0.5rem;
+  text-align: center;
+  margin: auto;
+}
+
 /* Hero */
 .hero {
   display: flex;
-  color: blueviolet;
+  position: relative;
+  margin-bottom: 5rem;
+}
+
+.heroLeft {
+  margin-left: 6rem;
+  color: rgb(13, 149, 228);
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.9);
+  z-index: 2;
+}
+
+.heroLeft ul {
+  list-style: none;
+  padding: 0;
+}
+
+button {
+  font-weight: bold;
+  background-color: rgb(13, 149, 228);
+  padding: 0.5rem 2rem;
+}
+
+.heroRight {
+  position: absolute;
+  left: 20%;
+}
+
+.heroRight img {
+  width: 40rem;
+  height: auto;
+}
+
+/* details */
+.details {
+  display: flex;
+}
+
+.detailsLeft {
+  width: 50%;
+}
+
+.upgrades {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.upgrade {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 0.5rem;
+}
+
+.upgrade img {
+  width: 10rem;
+  height: 6rem;
+  background-color: rgb(13, 149, 228);
+  padding: 1rem 3rem;
+  border: solid 0.1rem black;
+}
+
+.detailsRight ul li {
+  margin: 1rem 0;
 }
