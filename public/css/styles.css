@@ -9,7 +9,7 @@
 .box {
   position: absolute;
   background-color: white;
-  border: solid 0.25rem rgb(13, 149, 228);
+  border: solid 0.25rem #FF3B30;
   border-radius: 1rem;
   top: 3%;
   bottom: 3%;
@@ -30,14 +30,17 @@ body {
 }
 
 h1 {
+  font-family: 'Rubik', sans-serif;
   font-size: 40px;
 }
 
 h2 {
+  font-family: 'Rubik', sans-serif;
   font-size: 30px;
 }
 
 ul, a, button, p {
+  font-family: 'Roboto Mono', sans-serif;
   font-size: 20px;
 }
 
@@ -78,6 +81,7 @@ nav li {
   padding: 0.5rem;
   text-align: center;
   margin: auto;
+  cursor: pointer;
 }
 
 /* Hero */
@@ -89,9 +93,9 @@ nav li {
 
 .heroLeft {
   margin-left: 6rem;
-  color: rgb(13, 149, 228);
+  color: #FF3B30;
   padding: 1rem;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(48, 48, 48, 0.15);
   z-index: 2;
 }
 
@@ -102,8 +106,17 @@ nav li {
 
 button {
   font-weight: bold;
-  background-color: rgb(13, 149, 228);
+  background-color: #FF3B30;
+  border-radius: 1rem;
+  border: none;
   padding: 0.5rem 2rem;
+  cursor: pointer;
+  color: white;
+  text-shadow: 
+  -0.5px -0.5px 0 black,  
+  0.5px -0.5px 0 black,
+  -0.5px 0.5px 0 black,
+  0.5px 0.5px 0 black;
 }
 
 .heroRight {
@@ -141,7 +154,7 @@ button {
 .upgrade img {
   width: 10rem;
   height: 6rem;
-  background-color: rgb(13, 149, 228);
+  background-color: #FF3B30;
   padding: 1rem 3rem;
   border: solid 0.1rem black;
 }
