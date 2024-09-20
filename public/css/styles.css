@@ -93,15 +93,22 @@ nav li {
 
 .heroLeft {
   margin-left: 6rem;
-  color: #FF3B30;
   padding: 1rem;
   background-color: rgba(48, 48, 48, 0.15);
   z-index: 2;
 }
 
+.heroLeft h2 {
+  color: #FF3B30;
+}
+
 .heroLeft ul {
   list-style: none;
   padding: 0;
+}
+
+.heroLeft ul li {
+  color: black;
 }
 
 button {
