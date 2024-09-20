@@ -94,7 +94,8 @@ nav li {
 .heroLeft {
   margin-left: 6rem;
   padding: 1rem;
-  background-color: rgba(48, 48, 48, 0.15);
+  background-color: rgb(255, 255, 255, 0.9);
+  border-radius: 1rem;
   z-index: 2;
 }
 
