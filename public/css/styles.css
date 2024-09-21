@@ -135,6 +135,7 @@ button {
 .heroRight img {
   width: 35rem;
   height: auto;
+  object-fit: contain;
 }
 
 /* details */
