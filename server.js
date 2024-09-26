@@ -10,6 +10,7 @@ const expressLayouts = require("express-ejs-layouts") //import them into our app
 const env = require("dotenv").config()
 const app = express() //creates the "application"
 const static = require("./routes/static")
+const baseController = require("./controllers/baseController")
 
 /* ***********************
  * View Engine and Templates
@@ -24,9 +25,7 @@ app.set("layout", "./layouts/layout") // not at views root
 //Notice that instead of router.use, it is now app.use, meaning that the application itself will use this resource.
 app.use(static)
 //Index Route
-app.get("/", function(req, res){
-  res.render("index", {title: "Home"})
-})
+app.get("/", baseController.buildHome)
 
 /* ***********************
  * Local Server host name and port are defined
