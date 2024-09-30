@@ -11,6 +11,7 @@ const env = require("dotenv").config()
 const app = express() //creates the "application"
 const static = require("./routes/static")
 const baseController = require("./controllers/baseController")
+const inventoryRoute = require('./routes/inventoryRoute'); //Use the variable inventoryRoute to store the required resource.
 
 /* ***********************
  * View Engine and Templates
@@ -26,6 +27,8 @@ app.set("layout", "./layouts/layout") // not at views root
 app.use(static)
 //Index Route
 app.get("/", baseController.buildHome)
+// Inventory routes
+app.use("/inv", inventoryRoute)
 
 /* ***********************
  * Local Server host name and port are defined
@@ -40,3 +43,5 @@ const host = process.env.HOST
 app.listen(port, () => {
   console.log(`app listening on ${host}:${port}`)
 })
+
+
