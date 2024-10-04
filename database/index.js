@@ -3,7 +3,6 @@ require("dotenv").config()
 /* ***************
  * Connection Pool
  * SSL Object needed for local testing of app
- * But will cause problems in production environment
  * If - else will make determination which to use
  * *************** */
 let pool
