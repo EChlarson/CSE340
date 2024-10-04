@@ -57,7 +57,53 @@ Util.buildClassificationGrid = async function(data){
   return grid
 }
 
+/* **************************************
+* Build the details view HTML
+* ************************************ */
+Util.buildDetailsGrid = async function(detailsData){
+  let detailsGrid
+  if(detailsData.length > 0){
+    detailsGrid = '<div class="details-display">'
+    detailsData.forEach(vehicle => { 
+      //Left
+      detailsGrid += '<div id= "detailsLeft">'
+        //Heading
+        detailsGrid += '<h1>'
+        detailsGrid += '<a href="../../inv/detail/' + vehicle.inv_id +'" title="View ' 
+        + vehicle.inv_year + vehicle.inv_make + ' ' + vehicle.inv_model + ' details">' 
+        + vehicle.inv_year + vehicle.inv_make + ' ' + vehicle.inv_model + '</a>'
+        detailsGrid += '</h2>'
+        //Image
+        detailsGrid += '<a href="../../inv/detail/'+ vehicle.inv_id 
+        + '" title="View ' + vehicle.inv_make + ' '+ vehicle.inv_model 
+        + 'details"><img src="' + vehicle.inv_img 
+        +'" alt="Image of '+ vehicle.inv_make + ' ' + vehicle.inv_model 
+        +' on CSE Motors" /></a>'
+      detailsGrid += '</div>'  
 
+      //Right
+      detailsGrid += '<div id="detailsRight">'
+        //Heading
+        detailsGrid += '<h2>'
+        detailsGrid += '<a href="../../inv/detail/' + vehicle.inv_id +'" title="View ' 
+        + vehicle.inv_make + ' ' + vehicle.inv_model + ' details">' 
+        + vehicle.inv_make + ' ' + vehicle.inv_model + ' details</a>'
+        detailsGrid += '</h2>'
+        //List 
+        detailsGrid += '<ul id="detailsList">'
+        detailsGrid += '<li><span>Price: $' + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</span></li>'
+        detailsGrid += '<li><span>Description: ' + vehicle.inv_description + '</span></li>'
+        detailsGrid += '<li><span>color: ' + vehicle.inv_color + '</span></li>'
+        detailsGrid += '<li><span>Miles: ' + vehicle.inv_miles + '</span></li>'
+        detailsGrid += '</ul>'
+      detailsGrid += '</div>'
+    })
+    detailsGrid += '</div>'
+  } else { 
+    detailsGrid += '<p class="notice">Sorry, this vehicles information could not be found.</p>'
+  }
+  return detailsGrid
+}
 
 /* ****************************************
  * Middleware For Handling Errors
