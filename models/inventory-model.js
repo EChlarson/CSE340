@@ -34,7 +34,7 @@ async function getInventoryByVehicleId(inv_id) {
     const data = await pool.query(
       `SELECT *
       FROM inventory
-      WHERE i.inv_id = $1`,
+      WHERE inv_id = $1`,
       [inv_id]
     )
     return data.rows

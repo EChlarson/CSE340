@@ -31,7 +31,7 @@ Util.buildClassificationGrid = async function(data){
   let grid
   if(data.length > 0){
     grid = '<ul id="inv-display">'
-    data.forEach(vehicle => { 
+    data.forEach(vehicle => {
       grid += '<li>'
       grid +=  '<a href="../../inv/detail/'+ vehicle.inv_id 
       + '" title="View ' + vehicle.inv_make + ' '+ vehicle.inv_model 
@@ -72,20 +72,20 @@ Util.buildDetailsGrid = async function(detailsData){
         detailsGrid += '<a href="../../inv/detail/' + vehicle.inv_id +'" title="View ' 
         + vehicle.inv_year + vehicle.inv_make + ' ' + vehicle.inv_model + ' details">' 
         + vehicle.inv_year + vehicle.inv_make + ' ' + vehicle.inv_model + '</a>'
-        detailsGrid += '</h2>'
+        detailsGrid += '</h1>'
         //Image
         detailsGrid += '<a href="../../inv/detail/'+ vehicle.inv_id 
         + '" title="View ' + vehicle.inv_make + ' '+ vehicle.inv_model 
-        + 'details"><img src="' + vehicle.inv_img 
+        + 'details"><img src="' + vehicle.inv_image 
         +'" alt="Image of '+ vehicle.inv_make + ' ' + vehicle.inv_model 
         +' on CSE Motors" /></a>'
-      detailsGrid += '</div>'  
+      detailsGrid += '</div>'
 
       //Right
       detailsGrid += '<div id="detailsRight">'
         //Heading
         detailsGrid += '<h2>'
-        detailsGrid += '<a href="../../inv/detail/' + vehicle.inv_id +'" title="View ' 
+        detailsGrid += '<a href="../../invD/detail/' + vehicle.inv_id +'" title="View ' 
         + vehicle.inv_make + ' ' + vehicle.inv_model + ' details">' 
         + vehicle.inv_make + ' ' + vehicle.inv_model + ' details</a>'
         detailsGrid += '</h2>'
