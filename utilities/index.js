@@ -67,12 +67,6 @@ Util.buildDetailsGrid = async function(detailsData){
     detailsData.forEach(vehicle => { 
       //Left
       detailsGrid += '<div id= "detailsLeft">'
-        //Heading
-        detailsGrid += '<h1>'
-        detailsGrid += '<a href="../../inv/detail/' + vehicle.inv_id +'" title="View ' 
-        + vehicle.inv_year + vehicle.inv_make + ' ' + vehicle.inv_model + ' details">' 
-        + vehicle.inv_year + vehicle.inv_make + ' ' + vehicle.inv_model + '</a>'
-        detailsGrid += '</h1>'
         //Image
         detailsGrid += '<a href="../../inv/detail/'+ vehicle.inv_id 
         + '" title="View ' + vehicle.inv_make + ' '+ vehicle.inv_model 
@@ -87,7 +81,7 @@ Util.buildDetailsGrid = async function(detailsData){
         detailsGrid += '<h2>'
         detailsGrid += '<a href="../../invD/detail/' + vehicle.inv_id +'" title="View ' 
         + vehicle.inv_make + ' ' + vehicle.inv_model + ' details">' 
-        + vehicle.inv_make + ' ' + vehicle.inv_model + ' details</a>'
+        + vehicle.inv_make + ' ' + vehicle.inv_model + ' Details</a>'
         detailsGrid += '</h2>'
         //List 
         detailsGrid += '<ul id="detailsList">'
