@@ -1,0 +1,19 @@
+<%# Heading Content %>
+<h1><%= title %></h1>
+
+<%# Flash Message %>
+<%- messages() %>
+
+<%# Main Content %>
+<div class="loginForm">
+   <form action="/login" method="POST">
+       <div class="userInfo">
+           <label for="email">Email Address:</label>
+           <input type="email" id="email" name="account_email" required>
+           <label for="password">Password:</label>
+           <input type="password" id="password" name="account_password" required>
+       </div>
+       <button type="submit">Login</button>
+   </form>
+   <p>Don't have an account? <a href="/register">Register here</a></p>
+</div>

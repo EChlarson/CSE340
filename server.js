@@ -12,6 +12,7 @@ const app = express() //creates the "application"
 const static = require("./routes/static")
 const baseController = require("./controllers/baseController")
 const inventoryRoute = require('./routes/inventoryRoute');
+const accountRoute = require('./routes/accountRoute')
 const utilities = require('./utilities/');
 const session = require("express-session")
 const pool = require('./database/')
@@ -58,7 +59,8 @@ app.use("/error", utilities.handleErrors(require("./routes/errorRoute")))
 app.use(async (req, res, next) => {
   next({status: 404, message: 'Whoops! This page must have been repossessed. Sorry for the inconvenience!'})
 })
-
+// Account Route
+app.use('/account', require('./routes/accountRoute'));
 /* ***********************
 * Express Error Handler
 * Place after all other middleware
