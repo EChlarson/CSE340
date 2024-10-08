@@ -8,8 +8,6 @@ async function buildLogin(req, res, next) {
    res.render("account/login", {
      title: "Login",
      nav,
-     flash: req.flash(),
-     errors: null,
    })
  }
  
