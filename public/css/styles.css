@@ -231,6 +231,42 @@ hr {
   display: block;
 }
 
+/* Login */
+.loginForm {
+  padding: 1rem;
+  border-radius: 1rem;
+  background-color: #FF3B30;
+  max-width: 30rem;
+  margin: auto;
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.userInfo label {
+  font-family: 'Roboto Mono', sans-serif;
+  font-size: 20px;
+}
+
+.userInfo input {
+  width: 96%;
+  padding: 0.5rem;
+  margin: 0.25rem 0;
+  border-radius: 1rem;
+  font-family: 'Roboto Mono', sans-serif;
+  font-size: 20px;
+}
+
+.loginForm button {
+  background-color: rgb(199, 199, 199);
+  margin: 1rem 0;
+  color:rgb(48, 48, 48);
+  text-shadow: none;
+  width: 96%;
+}
+
 /* Responsive */
 @media (max-width: 1600px) {
    .upgrade img {
@@ -423,6 +459,11 @@ hr {
     height: auto;
     display: block;
     border-radius: 0.5rem;
+  }
+
+  .loginForm {
+    padding: 2rem;
+    max-width: 60rem;
   }
 }
 

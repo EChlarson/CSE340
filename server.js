@@ -55,12 +55,13 @@ app.get("/", utilities.handleErrors(baseController.buildHome))
 // Inventory routes
 app.use("/inv", inventoryRoute)
 app.use("/error", utilities.handleErrors(require("./routes/errorRoute")))
+// Account Route
+app.use('/account', accountRoute)
+
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
   next({status: 404, message: 'Whoops! This page must have been repossessed. Sorry for the inconvenience!'})
 })
-// Account Route
-app.use('/account', accountRoute)
 /* ***********************
 * Express Error Handler
 * Place after all other middleware
