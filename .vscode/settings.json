@@ -12,5 +12,8 @@
          "name": "CSE340Render",
          "connectString": "postgresql://cse340:q6uADMi1PgugvsibEuNQCi7PkZYtOh72@dpg-crk2jo3tq21c73a98sog-a.ohio-postgres.render.com/cse340_7lgb"
       }
+   ],
+   "cSpell.ignoreWords": [
+      "Delorean"
    ]
 }
