@@ -1,0 +1,34 @@
+<%# Heading Content %>
+<h1><%= title %></h1>
+
+<%# Flash Message %>
+<%- messages() %>
+
+<%# Main Content %>
+<div class="userForm regForm">
+   <form action="/registration" method="post">
+      <div class="userInfo">
+         <label for="firstName">First Name *</label>
+         <input type="text" id="firstName" name="account_firstname" required>
+         <label for="lastName">Last Name *</label>
+         <input type="text" id="lastName" name="account_lastname" required>
+         <label for="email">Email Address *</label>
+         <input type="email" id="email" name="account_email" required>
+         <label for="password">Password *</label>
+         <div id="passButton">
+            <input type="password" id="password" name="account_password" required>
+            <button type="button" id="pb"><i class="fa-solid fa-eye"></i></button>
+         </div>
+         <div id="passRequirement">
+            <h3>Password Requirements</h3>
+            <ul>
+               <li>12 characters in length, minimum</li>
+               <li>Contain at least 1 capital letter</li>
+               <li>Contain at least 1 number</li>
+               <li>Contain at least 1 special character</li>
+            </ul>
+         </div>
+      </div>
+      <button type="submit">Register</button>
+   </form>
+</div>

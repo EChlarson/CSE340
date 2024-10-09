@@ -33,6 +33,11 @@ h2 {
   font-size: 30px;
 }
 
+h3 {
+  font-family: 'Roboto Mono', sans-serif;
+  font-size: 30px;
+}
+
 ul, a, button, p {
   font-family: 'Roboto Mono', sans-serif;
   font-size: 20px;
@@ -232,7 +237,7 @@ hr {
 }
 
 /* Login */
-.loginForm {
+.userForm {
   padding: 1rem;
   border-radius: 1rem;
   background-color: #FF3B30;
@@ -252,6 +257,7 @@ hr {
 
 .userInfo input {
   width: 96%;
+  height: 3rem;
   padding: 0.5rem;
   margin: 0.25rem 0;
   border-radius: 1rem;
@@ -259,12 +265,24 @@ hr {
   font-size: 20px;
 }
 
-.loginForm button {
+.userForm button {
   background-color: rgb(199, 199, 199);
   margin: 1rem 0;
   color:rgb(48, 48, 48);
   text-shadow: none;
   width: 96%;
+}
+
+/* Register */
+#passButton button{
+  width: 3rem;
+  height: 3rem;
+  padding: 0.25rem;
+  margin: 0.25rem;
+}
+
+#passButton {
+  display: flex;
 }
 
 /* Responsive */
@@ -369,6 +387,14 @@ hr {
   .heroRight img {
     width: 18rem;
   }
+
+  #passRequirement h3{
+    font-size: 20px;
+  }
+
+  #passRequirement li{
+    font-size: 15px;
+  }
 }
 
 @media (max-width: 430px) {
@@ -461,9 +487,23 @@ hr {
     border-radius: 0.5rem;
   }
 
-  .loginForm {
+  .userForm {
     padding: 2rem;
     max-width: 60rem;
+  }
+
+  #passButton input {
+    width: 78%;
+  }
+
+  #passButton button {
+    width: 8rem;
+    height: 8rem;
+    margin: 0.25rem 1rem;
+  }
+
+  .userInfo input {
+    height: 8rem;
   }
 }
 
