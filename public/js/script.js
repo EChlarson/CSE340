@@ -8,6 +8,6 @@ passButton.addEventListener("click", function() {
       passButton.innerHTML = '<i class="fa-solid fa-eye-slash"></i>';
    } else {
       passwordField.setAttribute("type", "password");
-      passButton.innerHTML = '<i class="fa-solid fa-eye"></i>'
+      passButton.innerHTML = '<i class="fa-solid fa-eye"></i>';
    }
 });
