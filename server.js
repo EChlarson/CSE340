@@ -67,6 +67,7 @@ app.use('/account', accountRoute)
 app.use(async (req, res, next) => {
   next({status: 404, message: 'Whoops! This page must have been repossessed. Sorry for the inconvenience!'})
 })
+
 /* ***********************
 * Express Error Handler
 * Place after all other middleware
@@ -81,7 +82,7 @@ app.use(async (err, req, res, next) => {
     title: err.status || 'Server Error', 
     message, 
     nav,
-    errors: null
+    errors: null,
   })
 })
 
