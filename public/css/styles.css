@@ -273,6 +273,14 @@ hr {
   width: 96%;
 }
 
+.popup {
+  display: none;
+}
+
+#popBtn:hover + .popup {
+  display: block;
+}
+
 /* Register */
 #passButton button{
   width: 3rem;
@@ -388,11 +396,11 @@ hr {
     width: 18rem;
   }
 
-  #passRequirement h3{
+  .passRequirement h3{
     font-size: 20px;
   }
 
-  #passRequirement li{
+  .passRequirement li{
     font-size: 15px;
   }
 }
