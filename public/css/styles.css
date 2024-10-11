@@ -255,7 +255,9 @@ hr {
   font-size: 20px;
 }
 
-.userInfo input {
+.userInfo input,
+.userInfo textarea,
+.userInfo select {
   width: 96%;
   height: 3rem;
   padding: 0.5rem;
@@ -263,6 +265,10 @@ hr {
   border-radius: 1rem;
   font-family: 'Roboto Mono', sans-serif;
   font-size: 20px;
+}
+
+.userInfo textarea {
+  height: 10rem;
 }
 
 .userForm button{
@@ -523,8 +529,13 @@ hr {
     margin: 0.25rem 1rem;
   }
 
-  .userInfo input {
+  .userInfo input,
+  .userInfo select {
     height: 8rem;
+  }
+
+  .userInfo textarea {
+    height: 20rem;
   }
 }
 

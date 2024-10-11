@@ -106,4 +106,66 @@ invCont.addClassification = async function (req, res, next) {
   }
 };
 
+/* ***************************
+ *  Build Add Inventory view
+ * ************************** */
+invCont.buildInventory = async function (req, res, next) {
+  let nav = await utilities.getNav();
+  let classification = await invModel.getClassifications();
+  let inventoryList = await utilities.getInv();
+  res.render('inventory/add-inventory', {
+    title: 'Add Inventory',
+    nav,
+    classification,
+    inventoryList,
+    flash: req.flash(),
+    errors: null,
+  });
+
+}
+invCont.addInventory = async function (req, res, next) {
+  const { inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id } = req.body
+  let nav = await utilities.getNav()
+  let classification = await invModel.getClassifications();
+  try {
+    const data = await invModel.addInventory(inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id)
+    if (data) {
+      req.flash(
+        "notice",
+        `Congratulations, you did it!`
+      )
+      res.status(201).render("inventory/management", {
+        title: 'Management',
+        nav,
+        classification,
+        flash: req.flash(),
+        errors: null,
+      });
+    } else {
+      req.flash("notice", "Sorry, you did not make a new inventory.")
+      res.status(501).render("inventory/add-inventory", {
+        title: "Inventory",
+        nav,
+        classification,
+        inventoryList,
+        inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id,
+        flash: req.flash(),
+        errors: null,
+      })
+    }
+  } catch (error) {
+    console.error("addInventory error: ", error);
+    req.flash("notice", 'Sorry, there was an error processing the inventory.')
+    res.status(500).render("inventory/add-inventory", {
+      title: "Add Inventory - Error",
+      nav,
+      classification,
+      inventoryList,
+      inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id,
+      flash: req.flash(),
+      errors: null,
+    });
+  }
+};
+
 module.exports = invCont
