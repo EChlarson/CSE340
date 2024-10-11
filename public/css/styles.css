@@ -265,7 +265,7 @@ hr {
   font-size: 20px;
 }
 
-.userForm button {
+.userForm button{
   background-color: rgb(199, 199, 199);
   margin: 1rem 0;
   color:rgb(48, 48, 48);
@@ -291,6 +291,19 @@ hr {
 
 #passButton {
   display: flex;
+}
+
+/* Management */
+.userInfo button {
+  background-color: rgb(199, 199, 199);
+  margin: 1rem 0;
+  max-width: 30rem;
+}
+
+.userInfo a {
+  text-decoration: none;
+  color:rgb(48, 48, 48);
+  text-shadow: none;
 }
 
 /* Responsive */
