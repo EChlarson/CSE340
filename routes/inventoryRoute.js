@@ -20,7 +20,6 @@ router.get("/add-classification", utilities.handleErrors(invController.buildClas
 
 router.post("/add-classification",
     validate.classValidate.rules(),
-    validate.classValidate.checkData,
     utilities.handleErrors(invController.addClassification)
 );
 
