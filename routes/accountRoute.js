@@ -18,8 +18,7 @@ router.post('/registration',
    utilities.handleErrors(accountController.registerAccount))
 
 //Route to post login 
-router.post(
-  "/login",
+router.post("/login",
   regValidate.logValidate.loginRules(),
   regValidate.logValidate.checkLoginData,
   utilities.handleErrors(accountController.accountLogin)

@@ -78,7 +78,7 @@ validate.checkRegData = async (req, res, next) => {
  }
 
   /* ******************************
- * Check data and return errors or continue to login
+ * Login validation Rules
  * ***************************** */
   logValidate.loginRules = () => {
     return [

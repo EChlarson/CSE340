@@ -1,0 +1,20 @@
+<h1><%= title %></h1>
+
+<%# Flash Message %>
+<%- messages() %>
+
+<% if (errors) { %>
+   <ul class="notice">
+  <% errors.array().forEach(error => { %>
+    <li><%= error.msg %></li>
+ <%  }) %>
+  </ul>
+ <% } %>
+
+<form action="/inv/add-classification" method="POST" onsubmit="return validateForm()">
+   <div>
+      <label for="classificationName">Classification Name:</label>
+      <input type="text" id="classificationName" name="classification_name" required value="<%= locals.classification_name %>">
+   </div>
+   <button type="submit">Add Classification</button>
+</form>
