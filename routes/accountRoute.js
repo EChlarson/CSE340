@@ -25,6 +25,7 @@ router.post("/login",
 );
 
 //Route to user page
-router.get("/user", utilities.handleErrors(accountController.buildUser));
+/* router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.buildManagement)) */
+router.get("/user", utilities.handleErrors(accountController.buildManagement))
 
 module.exports = router;
