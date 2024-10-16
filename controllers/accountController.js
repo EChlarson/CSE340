@@ -104,8 +104,14 @@ async function accountLogin(req, res) {
    return res.redirect("/account/user")
    }
   } catch (error) {
-   return new Error('Access Forbidden')
-  }
+  req.flash("notice", "Login failed. Please try again.");
+  return res.status(500).render("account/login", {
+    title: "Login",
+    nav,
+    errors: null,
+    account_email,
+  });
+}
  }
 
 /* ****************************************
