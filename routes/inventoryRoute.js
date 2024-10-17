@@ -33,4 +33,12 @@ router.post("/add-inventory",
 //works with the URL in the JavaScript file inventory.js    
 router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
 
+//Edit Inventory View ( Modify from management page)
+router.get("/edit-inventory/:inv_id",
+    utilities.handleErrors(invController.editInventory))
+
+router.post("/edit-inventory/",
+    validate.invValidate.rules(),
+    utilities.handleErrors(invController.updateInventory))
+
 module.exports = router;

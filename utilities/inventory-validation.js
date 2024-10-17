@@ -125,7 +125,10 @@ invValidate.checkData = async (req, res, next) => {
     next();
 };
 
-
+   /* ******************************
+ * Check data, errors will be directed 
+   back to the edit view
+ * ***************************** */
 invValidate.checkUpdateData = async (req, res, next) => {
   const { inv_price, inv_miles, classification_id, inv_description, inv_image, inv_thumbnail, inv_color, inv_make, inv_model, inv_year, inv_id } = req.body;
   let classification = await invModel.getClassifications();

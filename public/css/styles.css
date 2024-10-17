@@ -43,6 +43,10 @@ ul, a, button, p {
   font-size: 20px;
 }
 
+.notice {
+  color: #FF3B30;
+}
+
 /* Header */
 header {
   display: flex;
