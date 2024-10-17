@@ -312,6 +312,15 @@ hr {
   text-shadow: none;
 }
 
+/* Managment View */
+.manInv {
+  max-width: 30rem;
+}
+
+.inventoryDisplay {
+  
+}
+
 /* Responsive */
 @media (max-width: 1600px) {
    .upgrade img {

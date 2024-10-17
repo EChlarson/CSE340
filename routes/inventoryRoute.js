@@ -30,4 +30,7 @@ router.post("/add-inventory",
     validate.invValidate.rules(),
     utilities.handleErrors(invController.addInventory));
 
+//works with the URL in the JavaScript file inventory.js    
+router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
+
 module.exports = router;
