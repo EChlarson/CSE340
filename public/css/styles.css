@@ -84,6 +84,33 @@ nav ul li a{
   cursor: pointer;
 }
 
+/* Footer */
+#siteLinks h3{
+  font-size: 20px;
+  border-bottom: solid 0.15rem black;
+  margin: 0.5rem 0;
+}
+
+#siteLinks {
+  display: flex;
+  flex-direction: column;
+}
+
+#siteLinks a {
+  font-family: 'Roboto Mono', sans-serif;
+  font-size: 14px;
+}
+
+footer p {
+  font-size: 14px;
+  text-align: center;
+  margin: 0.15rem;
+}
+
+footer {
+  margin-top: 3rem;
+}
+
 /* Hero */
 .hero {
   display: flex;
@@ -317,8 +344,20 @@ hr {
   max-width: 30rem;
 }
 
-.inventoryDisplay {
-  
+#inventoryDisplay {
+  margin: 2rem 0;
+  text-align: left;
+}
+
+#inventoryDisplay thead {
+  font-family: 'Roboto Mono', sans-serif;
+  font-size: 30px;
+}
+
+#inventoryDisplay tbody td,
+#inventoryDisplay tbody td a {
+  font-family: 'Roboto Mono', sans-serif;
+  font-size: 20px;
 }
 
 /* Responsive */
@@ -388,7 +427,7 @@ hr {
   }
   
   .heroRight img {
-    width: 25rem;
+    width: 20rem;
   }
 
   .upgrade img {
@@ -402,11 +441,11 @@ hr {
 
 @media (max-width: 768px) {
   .heroRight {
-    left: 35%;
+    left: 50%;
   }
   
   .heroRight img {
-    width: 23rem;
+    width: 15rem;
   }
 }
 
@@ -417,11 +456,7 @@ hr {
   
   .heroRight {
     left: 42%;
-    top: 34%;
-  }
-  
-  .heroRight img {
-    width: 18rem;
+    top: -5%;
   }
 
   .passRequirement h3{
@@ -429,6 +464,17 @@ hr {
   }
 
   .passRequirement li{
+    font-size: 15px;
+  }
+
+  #inventoryDisplay thead {
+    font-family: 'Roboto Mono', sans-serif;
+    font-size: 20px;
+  }
+  
+  #inventoryDisplay tbody td,
+  #inventoryDisplay tbody td a {
+    font-family: 'Roboto Mono', sans-serif;
     font-size: 15px;
   }
 }
@@ -546,6 +592,12 @@ hr {
   .userInfo textarea {
     height: 20rem;
   }
+
+  .userInfo button,
+  .manInv {
+    max-width:revert;
+  }
+
 }
 
 @media (max-width: 375px) {
