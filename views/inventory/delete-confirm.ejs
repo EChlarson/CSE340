@@ -1,0 +1,32 @@
+<%# Heading Content %>
+<h1><%= title %></h1>
+
+<%# Flash Message %>
+<%- messages() %>
+
+  <% if (flash) { %>
+    <% if (flash.notice) { %>
+      <ul class="notice">
+        <% flash.notice.forEach(msg => { %>
+          <li><%= msg %></li>
+        <%  }) %>
+      </ul>
+    <% } %>
+  <% } %>
+
+<%# Main Content %>
+<div class="userInfo">
+   <form id="deleteForm" action="/inv/delete-confirm" method="POST" onsubmit="return validateForm()">
+      <label for="make">Make:</label>
+      <input type="text" id="make" name="inv_make"  value="<%= locals.inv_make %>" readonly>
+      <label for="model">Model:</label>
+      <input type="text" id="model" name="inv_model"  value="<%= locals.inv_model %>" readonly>
+      <label for="year">Year:</label>
+      <input type="number" id="year" name="inv_year"  value="<%= locals.inv_year %>" readonly>
+      <label for="price">Price:</label>
+      <input type="number" id="price" name="inv_price"  value="<%= locals.inv_price %>" readonly>
+      <p>Confirm Deletion - The delete is permanent.</p>
+      <button type="submit">Delete Vehicle</button>
+      <input type="hidden" name="inv_id"<% if(locals.inv_id) { %> value="<%= locals.inv_id %>"<% } %>>
+   </form>
+</div>
