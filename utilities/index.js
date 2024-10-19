@@ -165,6 +165,16 @@ Util.checkLogin = (req, res, next) => {
     req.flash("notice", "Please log in.")
     return res.redirect("/account/login")
   }
- }  
+ }
+ 
+Util.checkClearance = (req, res, next) => {
+  const accountType = res.locals.accountData.account_type
+  if(accountType !== "Admin" && accountType !== "Employee"){
+    req.flash("You do not have permission to access this page.")
+    return res.redirect("/account/login")
+  } else {
+    next()
+  }
+}
 
 module.exports = Util
