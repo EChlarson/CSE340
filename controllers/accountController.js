@@ -139,5 +139,59 @@ async function buildAccManagement(req, res, next) {
     errors: null,
   })
 }
+
+/* ****************************************
+ *  Build Account Update View
+ * ************************************ */
+async function buildAccountUpdate(req, res, next) {
+  let nav = await utilities.getNav()
+  const { account_id } = req.params;
+  const data = await account.accountLogin(account_id);
+  res.render("account/update", {
+    title: "Edit Account",
+    nav,
+    flash: req.flash(),
+    errors: null,
+    account_firstname: data.account_firstname,
+    account_lastname: data.account_lastname,
+    account_email: data.account_email,
+    account_id: data.account_id,
+  })
+}
+
+ async function accountUpdate (req, res, next) {
+  const{account_firstname,
+    account_lastname,
+    account_email,
+    account_id,} = req.body
+  let nav = await utilities.getNav()
+  const updateResult = await account.updateAccount(
+    account_firstname,
+    account_lastname,
+    account_email,
+    account_id,
+  );
+  
+  if (updateResult){
+    const updatedName = updateResult.account_firstname + " " + updateResult.account_lastname
+    const accountData = await account.accountLogin(account_id)
+    const accessToken = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 * 1000 })
+
+    res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 })
+    res.redirect("/account")
+    req.flash("notice",`${updatedName}'s account was successfully updated.`)
+  } else {
+    req.flash("notice", "Sorry, the update failed.");
+    res.status(501).render("account/update", {
+      title: "Edit Account",
+      nav,
+      errors: null,
+      account_firstname,
+      account_lastname,
+      account_email,
+      account_id,
+    });
+  }
+};
  
- module.exports = { buildLogin, buildRegistration, registerAccount, accountLogin, buildUser, buildAccManagement}
+ module.exports = { buildLogin, buildRegistration, registerAccount, accountLogin, buildUser, buildAccManagement, buildAccountUpdate, accountUpdate}

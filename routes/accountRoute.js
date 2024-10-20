@@ -30,8 +30,21 @@ router.get("/user",
   utilities.checkClearance,
   utilities.handleErrors(accountController.buildUser)) 
 
-//Rote to accManagement
+//Route to accManagement
 router.get("/accManagement",
   utilities.handleErrors(accountController.buildAccManagement))
+
+//Route to Update Account Page
+router.get("/update/:account_id",
+  utilities.checkLogin,
+  utilities.handleErrors(accountController.buildAccountUpdate)
+);
+
+router.post("/update",
+  utilities.checkLogin,
+  regValidate.validate.updateAccountRules(),
+  regValidate.validate.checkUpdatedData,
+  utilities.handleErrors(accountController.accountUpdate)
+); 
 
 module.exports = router;

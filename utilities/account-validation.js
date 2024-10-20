@@ -112,4 +112,58 @@ validate.checkRegData = async (req, res, next) => {
     next();
   };
  
- module.exports = {validate, logValidate}
+ /*  **********************************
+ *  Update Account Data Validation Rules
+ * ********************************* */
+ validate.updateAccountRules = () => {
+  return [
+    body("account_firstname")
+      .trim()
+      .isLength({ min: 1 })
+      .withMessage("Please provide a first name."),
+    body("account_lastname")
+      .trim()
+      .isLength({ min: 2 })
+      .withMessage("Please provide a last name."),
+    body("account_email")
+    .trim()
+    .isEmail()
+    .normalizeEmail()
+    .withMessage("A valid email is required.")
+    .custom(async (account_email, { req }) => {
+      const emailExists = await accountModel.checkExistingEmailUpdate(account_email, req.body.account_id)
+
+      if (emailExists){
+        throw new Error("Email exists. Please log in or use different email")
+      }
+    }),
+  ]
+}
+
+/* ******************************
+ * Check data and return errors or continue to update data
+ * ***************************** */
+validate.checkUpdatedData = async (req, res, next) => {
+  // console.log(req.body)
+  // debugger
+  const { account_firstname, account_lastname, account_email, account_id} = req.body
+  // let errors = []
+  let errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav()
+    res.render("account/update", {
+      errors,
+      title: "Edit Account",
+      nav,
+      flash: req.flash(),
+      account_firstname,
+      account_lastname,
+      account_email,
+      account_id,
+    })
+    return
+  }
+  next()
+}
+
+module.exports = {validate, logValidate}
