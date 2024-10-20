@@ -1,4 +1,5 @@
 const pool = require("../database/")
+const bcrypt = require('bcryptjs');
 
 /* *****************************
 *   Register new account
@@ -72,6 +73,17 @@ async function accountLogin(account_email, account_password) {
 /* *****************************
 * Return User data for Update
 * *************************** */
+async function getAccountById (account_id) {
+  try {
+    const result = await pool.query(
+      'SELECT account_id, account_firstname, account_lastname, account_email, account_type, account_password FROM account WHERE account_id = $1',
+      [account_id])
+    return result.rows[0]
+  } catch (error) {
+    return new Error("No matching id found")
+  }
+}
+
 async function updateAccount(account_firstname, account_lastname, account_email, account_id){
   try {
     const sql =
@@ -88,4 +100,4 @@ async function updateAccount(account_firstname, account_lastname, account_email,
   }
 }
 
-module.exports = {registerAccount, checkExistingEmail, checkExistingEmailUpdate, getAccountByEmail, accountLogin, updateAccount}
+module.exports = {registerAccount, checkExistingEmail, checkExistingEmailUpdate, getAccountByEmail, accountLogin, updateAccount, getAccountById}

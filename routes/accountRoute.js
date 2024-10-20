@@ -5,6 +5,11 @@ const utilities = require("../utilities/")
 const accountController = require("../controllers/accountController")
 const regValidate = require('../utilities/account-validation')
 
+//These lines fixed my code it now has a body*****//
+router.use(express.json());
+router.use(express.urlencoded({ extended: true }));
+//*********************************************** */
+
 //Route to the View for the "My Account" page
 router.get('/login', utilities.handleErrors(accountController.buildLogin));
 
@@ -40,7 +45,7 @@ router.get("/update/:account_id",
   utilities.handleErrors(accountController.buildAccountUpdate)
 );
 
-router.post("/update",
+router.post("/account-update",
   utilities.checkLogin,
   regValidate.validate.updateAccountRules(),
   regValidate.validate.checkUpdatedData,

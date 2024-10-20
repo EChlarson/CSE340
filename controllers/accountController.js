@@ -146,16 +146,16 @@ async function buildAccManagement(req, res, next) {
 async function buildAccountUpdate(req, res, next) {
   let nav = await utilities.getNav()
   const { account_id } = req.params;
-  const data = await account.accountLogin(account_id);
+  const data = await accountModel.getAccountById(account_id);
   res.render("account/update", {
     title: "Edit Account",
     nav,
     flash: req.flash(),
-    errors: null,
     account_firstname: data.account_firstname,
     account_lastname: data.account_lastname,
     account_email: data.account_email,
     account_id: data.account_id,
+    errors: null,
   })
 }
 
@@ -165,7 +165,7 @@ async function buildAccountUpdate(req, res, next) {
     account_email,
     account_id,} = req.body
   let nav = await utilities.getNav()
-  const updateResult = await account.updateAccount(
+  const updateResult = await accountModel.updateAccount(
     account_firstname,
     account_lastname,
     account_email,
@@ -182,14 +182,14 @@ async function buildAccountUpdate(req, res, next) {
     req.flash("notice",`${updatedName}'s account was successfully updated.`)
   } else {
     req.flash("notice", "Sorry, the update failed.");
-    res.status(501).render("account/update", {
+    res.status(501).render("account/update/", {
       title: "Edit Account",
       nav,
-      errors: null,
       account_firstname,
       account_lastname,
       account_email,
       account_id,
+      errors: null,
     });
   }
 };
