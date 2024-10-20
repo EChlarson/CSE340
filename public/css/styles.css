@@ -364,6 +364,11 @@ hr {
   font-size: 20px;
 }
 
+/* Update */
+.updateForm {
+  margin-bottom: 2rem;
+}
+
 /* Responsive */
 @media (max-width: 1600px) {
    .upgrade img {

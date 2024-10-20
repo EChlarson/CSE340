@@ -5,7 +5,7 @@ const utilities = require("../utilities/")
 const accountController = require("../controllers/accountController")
 const regValidate = require('../utilities/account-validation')
 
-//These lines fixed my code it now has a body*****//
+//These lines fixed my code, Don't ask me how*****//
 router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
 //*********************************************** */
@@ -29,6 +29,9 @@ router.post("/login",
   utilities.handleErrors(accountController.accountLogin)
 );
 
+//Route to POst Logout
+router.get('/logout', utilities.handleErrors(accountController.accountLogout));
+
 //Route to user page
 router.get("/user", 
   utilities.checkLogin,
@@ -45,11 +48,19 @@ router.get("/update/:account_id",
   utilities.handleErrors(accountController.buildAccountUpdate)
 );
 
+//Top Form
 router.post("/account-update",
   utilities.checkLogin,
   regValidate.validate.updateAccountRules(),
   regValidate.validate.checkUpdatedData,
   utilities.handleErrors(accountController.accountUpdate)
 ); 
+
+//Bottom Form
+router.post("/change-password",
+  utilities.checkLogin,
+  regValidate.validate.changePasswordRules(),
+  utilities.handleErrors(accountController.changePassword)
+);
 
 module.exports = router;
