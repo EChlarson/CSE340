@@ -1,4 +1,4 @@
-const pool = require("../database/")
+const pool = require("../database/");
 const bcrypt = require('bcryptjs');
 
 /* *****************************
@@ -117,4 +117,40 @@ async function changePassword(account_password, account_id){
   }
 }
 
-module.exports = {registerAccount, checkExistingEmail, checkExistingEmailUpdate, getAccountByEmail, accountLogin, updateAccount, getAccountById, changePassword}
+/* ***************************
+ *  Additional Enhancement
+/* ***************************
+ *  Add item to favorites
+ * ************************** */
+async function addFavorite(account_id, inv_id) {
+  try {
+      const sql = `INSERT INTO favorites (account_id, inv_id)
+                   VALUES ($1, $2) RETURNING *`;
+      const data = await pool.query(sql, [account_id, inv_id]);
+      return data.rows[0]; // return the newly created favorite
+  } catch (error) {
+      console.error("addFavorite error:", error);
+      throw new Error("Could not add to favorites");
+  }
+}
+
+/* ***************************
+*  Get user's favorite items
+* ************************** */
+async function getFavoritesByUser(account_id) {
+  try {
+      const sql =`SELECT i.* 
+                  FROM inventory i
+                  JOIN favorites f 
+                  ON i.inv_id = f.inv_id
+                  WHERE f.account_id = $1`;
+                   
+      const data = await pool.query(sql, [account_id]);
+      return data.rows;
+  } catch (error) {
+      console.error("getFavoritesByUser error:", error);
+      throw new Error("Could not retrieve favorites");
+  }
+}
+
+module.exports = {registerAccount, checkExistingEmail, checkExistingEmailUpdate, getAccountByEmail, accountLogin, updateAccount, getAccountById, changePassword, addFavorite, getFavoritesByUser}

@@ -4,5 +4,36 @@
 <%# Flash Message %>
 <%- messages() %>
 
+<% if (errors) { %>
+  <ul class="notice">
+    <% errors.array().forEach(error => { %>
+      <li><%= error.msg %></li>
+    <%  }) %>
+  </ul>
+<% } %>
+
 <%# Main Content %>
 <%- detailsGrid %>
+
+<form id="favButton" action="/inv/favorites" method="post">
+   <button type="submit">Add to Favorites</button>
+   <input type="hidden" value="<%= inv_id %>" name="invId">
+</form>
+
+<div class="userInfo">
+    <h3>Leave a Review</h3>
+    <form action="<%= inv_id %>" method="post">
+      <input type="hidden" name="inv_id" value="<%= inv_id %>">
+      <label for="rating">Rating:</label>
+      <select name="rating" id="rating" required>
+         <option value="5">5</option>
+         <option value="4">4</option>
+         <option value="3">3</option>
+         <option value="2">2</option>
+         <option value="1">1</option>
+      </select>
+      <label for="review_text">Review:</label>
+      <textarea name="review_text" id="review_text" required></textarea>
+      <button type="submit">Submit Review</button>
+   </form>
+</div>

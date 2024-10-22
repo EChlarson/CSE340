@@ -63,13 +63,10 @@ Util.buildClassificationGrid = async function(data){
 /* **************************************
 * Build the details view HTML
 * ************************************ */
-Util.buildDetailsGrid = async function(detailsData) {   
+Util.buildDetailsGrid = async function(vehicle) {   
   let detailsGrid = ''; 
   
-  if (detailsData.length > 0) {     
-    detailsGrid = '<div class="details-display">';     
-    
-    detailsData.forEach(vehicle => {       
+    detailsGrid = '<div class="details-display">';            
       detailsGrid += '<div class="detailsLeft">';       
       detailsGrid += '<a href="../../inv/details/' + vehicle.inv_id         
         + '" title="View ' + vehicle.inv_make + ' ' + vehicle.inv_model         
@@ -91,14 +88,9 @@ Util.buildDetailsGrid = async function(detailsData) {
       detailsGrid += '<li><span>Color: ' + vehicle.inv_color + '</span></li>'; 
       detailsGrid += '<li><span>Miles: ' + new Intl.NumberFormat('en-US').format(vehicle.inv_miles) + '</span></li>'; 
       detailsGrid += '</ul>'; 
-      
       detailsGrid += '</div>'; 
-    }); 
   
-    detailsGrid += '</div>'; 
-  } else { 
-    detailsGrid = '<p class="notice">Sorry, this vehicle information could not be found.</p>'; 
-  } 
+    detailsGrid += '</div>';
   
   return detailsGrid; 
 };

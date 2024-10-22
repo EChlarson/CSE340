@@ -243,5 +243,27 @@ async function accountLogout(req, res) {
    res.clearCookie("jwt");
    return res.redirect("/")
 }
- 
- module.exports = { buildLogin, buildRegistration, registerAccount, accountLogin, buildUser, buildAccManagement, buildAccountUpdate, accountUpdate, changePassword, accountLogout}
+
+/* ***************************
+ *  Additional Enhancement
+/* ***************************
+*  View user's favorite items
+* ************************** */
+async function showFavoritesView(req, res, next) {
+  const account_id = req.session.account_id;
+  let nav = await utilities.getNav()
+  
+  try {
+      const favorites = await accountModel.getFavoritesByUser(account_id);
+      res.render("account/favorites", {
+          title: "My Favorites",
+          nav,
+          favorites: favorites,
+      });
+  } catch (error) {
+      console.error("Error creating favorites view:", error);
+      res.status(500).send("Error creating favorites view");
+  }
+};
+
+ module.exports = { buildLogin, buildRegistration, registerAccount, accountLogin, buildUser, buildAccManagement, buildAccountUpdate, accountUpdate, changePassword, accountLogout, showFavoritesView}

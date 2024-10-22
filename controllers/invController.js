@@ -24,7 +24,7 @@ invCont.buildByClassificationId = async function (req, res, next) {
  *  Build details view
  * ************************** */
 invCont.buildByInventoryId = async function(req, res, next) {
-  console.log("Route hit: /details/:invId");
+  console.log("ran buildByInventoryId");
 
   const inv_id = req.params.invId
   console.log("Fetching details for inv_id:", inv_id);
@@ -35,9 +35,9 @@ invCont.buildByInventoryId = async function(req, res, next) {
   const detailsGrid = await utilities.buildDetailsGrid(detailsData)
   let nav = await utilities.getNav()
 
-  const vehicleYear = detailsData[0].inv_year
-  const vehicleMake = detailsData[0].inv_make
-  const vehicleModel = detailsData[0].inv_model
+  const vehicleYear = detailsData.inv_year
+  const vehicleMake = detailsData.inv_make
+  const vehicleModel = detailsData.inv_model
   console.log(vehicleYear + " " + vehicleMake + " " + vehicleModel)
 
   res.render("./inventory/details", {
@@ -45,6 +45,7 @@ invCont.buildByInventoryId = async function(req, res, next) {
     nav,
     detailsGrid,
     errors: null,
+    inv_id: detailsData.inv_id
   })
 }
 
@@ -201,10 +202,12 @@ invCont.getInventoryJSON = async (req, res, next) => {
  * ************************** */
 invCont.editInventory = async function (req, res, next) {
   const inv_id = parseInt(req.params.inv_id);
+  console.log(inv_id)
   let nav = await utilities.getNav();
   const itemData = await invModel.getInventoryByVehicleId(inv_id)
   const classification = await invModel.getClassifications();
   const itemName = `${itemData.inv_make} ${itemData.inv_model}`;
+  console.log(itemName, itemData)
 
   res.status(201).render("inventory/edit-inventory", {
     title: "Edit " + itemName,
@@ -351,5 +354,88 @@ invCont.removeInventory = async function (req, res, next) {
       res.status(501).render("/inv/management")
     }
 };
+
+/* ***************************
+ *  Additional Enhancement 
+****************************/
+/* ***************************
+ *  User Favorite Vehicle
+****************************/
+
+invCont.addFavorite = async function (req, res, next) {
+  const account_id = res.locals.accountData.account_id;
+  const inv_id = req.body.invId;
+  console.log(inv_id, account_id);
+
+  const detailsData = await invModel.getInventoryByVehicleId(inv_id)
+  console.log("Details Data:", detailsData);
+
+  const detailsGrid = await utilities.buildDetailsGrid(detailsData)
+  let nav = await utilities.getNav()
+
+  const vehicleYear = detailsData[0].inv_year
+  const vehicleMake = detailsData[0].inv_make
+  const vehicleModel = detailsData[0].inv_model
+
+  try {
+     const favorite = await invModel.addFavorite(account_id, inv_id);
+      console.log(favorite);
+
+      req.flash("notice", "Vehicle added to favorites list.")
+      res.render("./inventory/details", {
+        title: vehicleYear + " " + vehicleMake + " " + vehicleModel,
+        nav,
+        detailsGrid,
+        errors: null,
+        inv_id: detailsData[0].inv_id
+      })
+  } catch (error) {
+      console.error("Error adding favorite:", error);
+      res.status(500).send("Error adding favorite");
+  }
+};
+
+/* ***************************
+ *  Add a new review
+ * ************************** */
+invCont.addReview =  async function (req, res, next) {
+  const { inv_id, rating, review_text } = req.body;
+  const account_id = res.locals.accountData.account_id; 
+
+  if (!account_id) {
+    req.flash('notice', 'You need to be logged in to leave a review.');
+    return res.redirect(`/inv/detail/${inv_id}`);
+  }
+
+  const detailsData = await invModel.getInventoryByVehicleId(inv_id)
+  console.log("Details Data:", detailsData);
+
+  const detailsGrid = await utilities.buildDetailsGrid(detailsData)
+  let nav = await utilities.getNav()
+
+  const vehicleYear = detailsData[0].inv_year
+  const vehicleMake = detailsData[0].inv_make
+  const vehicleModel = detailsData[0].inv_model
+
+  try {
+    const newReview = await invModel.addReview(inv_id, account_id, review_text, rating);
+    console.log(newReview)
+    
+    req.flash('notice', 'Review added successfully!');
+    res.render(`/inv/detail/${inv_id}`, {
+      title: vehicleYear + " " + vehicleMake + " " + vehicleModel,
+      nav,
+      detailsGrid,
+      errors: null,
+      inv_id: detailsData[0].inv_id,
+      review_text: reviewData[0].review_text,
+      rating: reviewData[0].rating,
+    })
+
+  } catch (error) {
+    console.error("Error adding review:", error);
+    res.status(500).send("Error adding review");
+  }
+}
 
 module.exports = invCont

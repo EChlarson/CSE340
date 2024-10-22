@@ -48,4 +48,16 @@ router.get("/delete-confirm/:inv_id",
 router.post("/delete-confirm/",
     utilities.handleErrors(invController.removeInventory))
 
+/* ***************************
+ *  Additional Enhancement 
+****************************/
+
+//Favorites Route
+router.post("/favorites",
+    utilities.handleErrors(invController.addFavorite))
+
+//Review Route
+router.post("/details", 
+    utilities.handleErrors(invController.addReview));
+
 module.exports = router;

@@ -34,7 +34,7 @@ async function getInventoryByVehicleId(inv_id) {
     const data = await pool.query(
       `SELECT * FROM inventory WHERE inv_id = $1`, [inv_id]
     );
-    return data.rows
+    return data.rows[0]
   } catch (error) {
     console.error("getInventoryByVehicleId error " + error)
     return null;
@@ -120,4 +120,37 @@ async function removeInventory(inv_id){
   }
 }
 
-module.exports = {getClassifications, getInventoryByClassificationId, getInventoryByVehicleId, insertClassification, addInventory, getInventory, updateInventory, removeInventory};
+/* ***************************
+ *  Additional Enhancement 
+****************************/
+/* ***************************
+ *  Insert Favorites in Database
+****************************/
+async function addFavorite(account_id, inv_id) {
+  try {
+      const sql = `INSERT INTO favorites (account_id, inv_id)
+                   VALUES ($1, $2) RETURNING *`;
+      const data = await pool.query(sql, [account_id, inv_id]);
+      return data.rows[0]; // return the newly created favorite
+  } catch (error) {
+      console.error("addFavorite error:", error);
+      throw new Error("Could not add to favorites");
+  }
+}
+
+/* ***************************
+ *  Insert Review in Database
+****************************/
+async function addReview(inv_id, account_id, review_text, rating) {
+  try {
+    const sql = `INSERT INTO reviews (inv_id, account_id, review_text, rating)
+                 VALUES ($1, $2, $3, $4) RETURNING *`;
+    const data = await pool.query(sql, [inv_id, account_id, review_text, rating]);
+    return data.rows[0]; // Return the newly added review
+  } catch (error) {
+    console.error("addReview error:", error);
+    throw new Error("Could not add review");
+  }
+}
+
+module.exports = {getClassifications, getInventoryByClassificationId, getInventoryByVehicleId, insertClassification, addInventory, getInventory, updateInventory, removeInventory, addFavorite, addReview};
