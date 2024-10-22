@@ -1,9 +1,8 @@
 <%# Heading Content %>
-<% if (title) { %>
-   <h1><%= title %></h1>
-   <% } else {
-     res.redirect('/')
-   } %>
+<h1><%= title %></h1>
+
+<%# Flash Message %>
+<%- messages() %>
 
 <%# Main Content %>
 <%- detailsGrid %>

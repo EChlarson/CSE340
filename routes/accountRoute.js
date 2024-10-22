@@ -29,7 +29,7 @@ router.post("/login",
   utilities.handleErrors(accountController.accountLogin)
 );
 
-//Route to POst Logout
+//Route to Post Logout
 router.get('/logout', utilities.handleErrors(accountController.accountLogout));
 
 //Route to user page

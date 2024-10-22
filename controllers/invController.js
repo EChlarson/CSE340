@@ -24,13 +24,21 @@ invCont.buildByClassificationId = async function (req, res, next) {
  *  Build details view
  * ************************** */
 invCont.buildByInventoryId = async function(req, res, next) {
+  console.log("Route hit: /details/:invId");
+
   const inv_id = req.params.invId
+  console.log("Fetching details for inv_id:", inv_id);
+  
   const detailsData = await invModel.getInventoryByVehicleId(inv_id)
+  console.log("Details Data:", detailsData);
+
   const detailsGrid = await utilities.buildDetailsGrid(detailsData)
   let nav = await utilities.getNav()
+
   const vehicleYear = detailsData[0].inv_year
   const vehicleMake = detailsData[0].inv_make
   const vehicleModel = detailsData[0].inv_model
+  console.log(vehicleYear + " " + vehicleMake + " " + vehicleModel)
 
   res.render("./inventory/details", {
     title: vehicleYear + " " + vehicleMake + " " + vehicleModel,
