@@ -440,23 +440,23 @@ invCont.addReview =  async function (req, res, next) {
   const detailsGrid = await utilities.buildDetailsGrid(detailsData)
   let nav = await utilities.getNav()
 
-  const vehicleYear = detailsData[0].inv_year
-  const vehicleMake = detailsData[0].inv_make
-  const vehicleModel = detailsData[0].inv_model
+  const vehicleYear = detailsData.inv_year
+  const vehicleMake = detailsData.inv_make
+  const vehicleModel = detailsData.inv_model
 
   try {
     const newReview = await invModel.addReview(inv_id, account_id, review_text, rating);
     console.log(newReview)
     
     req.flash('notice', 'Review added successfully!');
-    res.render(`/inv/detail/${inv_id}`, {
+    res.render("./inventory/details", {
       title: vehicleYear + " " + vehicleMake + " " + vehicleModel,
       nav,
       detailsGrid,
       errors: null,
-      inv_id: detailsData[0].inv_id,
-      review_text: reviewData[0].review_text,
-      rating: reviewData[0].rating,
+      inv_id: detailsData.inv_id,
+      review_text: newReview.review_text,
+      rating: newReview.rating,
     })
 
   } catch (error) {

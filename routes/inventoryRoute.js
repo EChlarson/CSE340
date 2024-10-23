@@ -61,7 +61,7 @@ router.post("/favorites",
     utilities.handleErrors(invController.viewFavorites)); */
     
 //Review Route
-router.post("/reviews", 
+router.post("/review", 
     utilities.handleErrors(invController.addReview));
 
 module.exports = router;

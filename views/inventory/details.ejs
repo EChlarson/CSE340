@@ -22,7 +22,7 @@
 
 <div class="userInfo">
     <h3>Leave a Review</h3>
-    <form action="<%= inv_id %>" method="post">
+    <form action="/inv/review" method="post">
       <input type="hidden" name="inv_id" value="<%= inv_id %>">
       <label for="rating">Rating:</label>
       <select name="rating" id="rating" required>
