@@ -117,4 +117,27 @@ async function changePassword(account_password, account_id){
   }
 }
 
-module.exports = {registerAccount, checkExistingEmail, checkExistingEmailUpdate, getAccountByEmail, accountLogin, updateAccount, getAccountById, changePassword}
+/* ***************************
+ *  Additional Enhancement
+/* ***************************
+*  Get user's favorite items
+* ************************** */
+async function getFavoritesByUser(account_id) {
+  console.log(account_id);
+
+  try {
+      const sql =`SELECT i.* 
+                  FROM inventory i
+                  JOIN favorites f 
+                  ON i.inv_id = f.inv_id
+                  WHERE f.account_id = $1`;
+
+      const data = await pool.query(sql, [account_id]);
+      return data.rows;
+  } catch (error) {
+      console.error("getFavoritesByUser error:", error);
+      throw new Error("Could not retrieve favorites");
+  }
+}
+
+module.exports = {registerAccount, checkExistingEmail, checkExistingEmailUpdate, getAccountByEmail, accountLogin, updateAccount, getAccountById, changePassword, getFavoritesByUser}

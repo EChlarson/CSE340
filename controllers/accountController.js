@@ -244,4 +244,36 @@ async function accountLogout(req, res) {
    return res.redirect("/")
 }
 
- module.exports = { buildLogin, buildRegistration, registerAccount, accountLogin, buildUser, buildAccManagement, buildAccountUpdate, accountUpdate, changePassword, accountLogout}
+/* ***************************
+ *  Additional Enhancement
+/* ***************************
+*  View user's favorite items
+* ************************** */
+async function showFavoritesView(req, res, next) {
+  const account_id = req.params.account_id;
+  
+  try {
+    const favorites = await accountModel.getFavoritesByUser(account_id);
+
+    if (!favorites || favorites.length === 0) {
+      req.flash("notice", "No favorite vehicles found.");
+    }
+
+    // Pass favorites data to the view and build the grid
+    const favoritesGrid = await utilities.buildFavoritesGrid(favorites);
+    let nav = await utilities.getNav();
+
+    res.render("account/favorites", { 
+      title: "My Favorites",
+      nav, 
+      favoritesGrid, 
+      errors: null
+    });
+
+  } catch (error) {
+    console.error("Error retrieving favorites:", error);
+    res.status(500).send("Error retrieving favorites");
+  }
+};
+
+ module.exports = { buildLogin, buildRegistration, registerAccount, accountLogin, buildUser, buildAccManagement, buildAccountUpdate, accountUpdate, changePassword, accountLogout, showFavoritesView}

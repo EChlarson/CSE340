@@ -373,9 +373,9 @@ invCont.addFavorite = async function (req, res, next) {
   const detailsGrid = await utilities.buildDetailsGrid(detailsData)
   let nav = await utilities.getNav()
 
-  const vehicleYear = detailsData[0].inv_year
-  const vehicleMake = detailsData[0].inv_make
-  const vehicleModel = detailsData[0].inv_model
+  const vehicleYear = detailsData.inv_year
+  const vehicleMake = detailsData.inv_make
+  const vehicleModel = detailsData.inv_model
 
   try {
      const favorite = await invModel.addFavorite(account_id, inv_id);
@@ -387,7 +387,7 @@ invCont.addFavorite = async function (req, res, next) {
         nav,
         detailsGrid,
         errors: null,
-        inv_id: detailsData[0].inv_id
+        inv_id: detailsData.inv_id
       })
   } catch (error) {
       console.error("Error adding favorite:", error);

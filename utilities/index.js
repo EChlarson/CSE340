@@ -123,6 +123,7 @@ Util.getInv = async function (req, res, next) {
 * ************************************ */
 Util.buildFavoritesGrid = async function(favorites) {
   let grid = '';
+  console.log(favorites);
 
   // Check if favorites is a valid array
   if (Array.isArray(favorites) && favorites.length > 0) {
