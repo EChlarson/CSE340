@@ -141,7 +141,7 @@ async function addFavorite(account_id, inv_id) {
 /* ***************************
 *  Get user's favorite items
 * ************************** */
-async function getFavoritesByUser(account_id) {
+/* async function getFavoritesByUser(account_id) {
   try {
     const sql = `
       SELECT i.inv_id, i.inv_make, i.inv_model, i.inv_price, i.inv_thumbnail 
@@ -155,7 +155,7 @@ async function getFavoritesByUser(account_id) {
     console.error("Error retrieving favorites:", error);
     throw new Error("Could not retrieve favorites");
   }
-}
+} */
 
 /* ***************************
  *  Insert Review in Database
@@ -172,4 +172,4 @@ async function addReview(inv_id, account_id, review_text, rating) {
   }
 }
 
-module.exports = {getClassifications, getInventoryByClassificationId, getInventoryByVehicleId, insertClassification, addInventory, getInventory, updateInventory, removeInventory, addFavorite, addReview, getFavoritesByUser};
+module.exports = {getClassifications, getInventoryByClassificationId, getInventoryByVehicleId, insertClassification, addInventory, getInventory, updateInventory, removeInventory, addFavorite, addReview};

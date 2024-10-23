@@ -395,7 +395,7 @@ invCont.addFavorite = async function (req, res, next) {
   }
 };
 
-invCont.viewFavorites = async function(req, res, next) {
+/* invCont.viewFavorites = async function(req, res, next) {
   const account_id = req.session.account_id;
   
   try {
@@ -420,7 +420,7 @@ invCont.viewFavorites = async function(req, res, next) {
     console.error("Error retrieving favorites:", error);
     res.status(500).send("Error retrieving favorites");
   }
-}
+}; */
 
 /* ***************************
  *  Add a new review

@@ -15,7 +15,7 @@
 <%# Main Content %>
 <%- detailsGrid %>
 
-<form id="favButton" action="/inv/favorites" method="post">
+<form id="favButton" action="/inv/details/" method="post">
    <button type="submit">Add to Favorites</button>
    <input type="hidden" value="<%= inv_id %>" name="invId">
 </form>
@@ -38,4 +38,4 @@
    </form>
 </div>
 
-<script src="/js/favButton.js"></script>
+<!-- <script src="/js/favButton.js"></script> -->
