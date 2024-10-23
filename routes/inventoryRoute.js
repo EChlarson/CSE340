@@ -55,9 +55,13 @@ router.post("/delete-confirm/",
 //Favorites Route
 router.post("/favorites",
     utilities.handleErrors(invController.addFavorite))
-
+    
+// View user's favorites
+router.get("/favorites/:account_id", 
+    utilities.handleErrors(invController.viewFavorites));
+    
 //Review Route
-router.post("/details", 
+router.post("/reviews", 
     utilities.handleErrors(invController.addReview));
 
 module.exports = router;

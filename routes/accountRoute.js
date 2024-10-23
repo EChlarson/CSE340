@@ -63,12 +63,4 @@ router.post("/change-password",
   utilities.handleErrors(accountController.changePassword)
 );
 
-/* ***************************
- *  Additional Enhancement 
-****************************/
-
-// View user's favorites
-router.get("/favorites/:account_id", 
-  utilities.handleErrors(accountController.showFavoritesView));
-
 module.exports = router;

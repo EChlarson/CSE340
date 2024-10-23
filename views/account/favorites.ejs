@@ -3,15 +3,5 @@
 <%# Flash Message %>
 <%- messages() %>
 
-<ul>
-  <% favorites.forEach(function(favorite) { %>
-    <li>
-      <a href="/inv/detail/<%= favorite.inv_id %>">
-        <%= favorite.inv_year %> <%= favorite.inv_make %> <%= favorite.inv_model %>
-      </a>
-      <form action="/favorites/remove/<%= favorite.inv_id %>" method="post">
-        <button type="submit">Remove from Favorites</button>
-      </form>
-    </li>
-  <% }); %>
-</ul>
+<%- grid %>
+

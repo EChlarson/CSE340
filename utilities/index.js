@@ -118,6 +118,49 @@ Util.getInv = async function (req, res, next) {
   return list
 }
 
+/* **************************************
+* Build Favorites View
+* ************************************ */
+Util.buildFavoritesGrid = async function(favorites) {
+  let grid = '';
+
+  // Check if favorites is a valid array
+  if (Array.isArray(favorites) && favorites.length > 0) {
+    grid = '<ul id="favorites-display">'; // Start of the grid
+
+    favorites.forEach(vehicle => {
+      grid += `
+        <li>
+          <div class="vehicle-container">
+            <a href="/inv/details/${vehicle.inv_id}" title="View ${vehicle.inv_make} ${vehicle.inv_model} details">
+            <img src="${vehicle.inv_thumbnail}" alt="Image of ${vehicle.inv_make} ${vehicle.inv_model} on CSE Motors" /></a>
+            
+            <div class="namePrice">
+            <hr />
+            <h2>
+            <a href="/inv/details/${vehicle.inv_id}" title="View ${vehicle.inv_make} ${vehicle.inv_model} details">${vehicle.inv_make} ${vehicle.inv_model}</a>
+            </h2>
+              
+            <span class="price">$${new Intl.NumberFormat('en-US').format(vehicle.inv_price)}</span>
+            </div>
+
+            <form action="/account/favorites/remove/${vehicle.inv_id}" method="post" class="remove-favorite-form">
+            <button type="submit">Remove from Favorites</button>
+            </form>
+          </div>
+        </li>
+      `;
+    });
+
+    grid += '</ul>'; // Close the grid
+  } else {
+    // If no favorites found, show a message
+    grid = '<p class="notice">You have no favorite vehicles at the moment.</p>';
+  }
+
+  return grid;
+};
+
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for 
