@@ -127,7 +127,7 @@ Util.buildFavoritesGrid = async function(favorites) {
 
   // Check if favorites is a valid array
   if (Array.isArray(favorites) && favorites.length > 0) {
-    grid = '<ul id="favorites-display">'; // Start of the grid
+    grid = '<ul id="inv-display">'; // Start of the grid
 
     favorites.forEach(vehicle => {
       grid += `
