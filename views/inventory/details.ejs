@@ -20,6 +20,10 @@
    <input type="hidden" value="<%= inv_id %>" name="invId">
 </form>
 
+<form id="revButton" action="/inv/reviews/<%= inv_id %>" method="post">
+   <button type="submit">View Vehicle Reviews</button>
+</form>
+
 <div class="userInfo">
     <h3>Leave a Review</h3>
     <form action="/inv/review" method="post">
@@ -37,5 +41,3 @@
       <button type="submit">Submit Review</button>
    </form>
 </div>
-
-<!-- <script src="/js/favButton.js"></script> -->

@@ -162,6 +162,35 @@ Util.buildFavoritesGrid = async function(favorites) {
   return grid;
 };
 
+/* **************************************
+* Build Reviews View
+* ************************************ */
+Util.buildReviewsGrid = async function(reviews) {
+  let grid = '';
+
+  if (Array.isArray(reviews) && reviews.length > 0) { // Ensure reviews is an array
+    grid = '<ul id="inv-display">'; // Start of the reviews grid
+
+    reviews.forEach(review => {
+      grid += `
+        <li>
+          <div class="review-container">
+            <h3>User: ${review.account_firstname || 'Anonymous'}</h3>
+            <p>Rating: ${'★'.repeat(review.rating)} (${review.rating} / 5)</p>
+            <p>Review: ${review.review_text}</p>
+          </div>
+        </li>
+      `;
+    });
+
+    grid += '</ul>'; // Close the grid
+  } else {
+    grid = '<p>No reviews available.</p>'; // Fallback if no reviews are found
+  }
+
+  return grid;
+};
+
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for 

@@ -153,4 +153,22 @@ async function addReview(inv_id, account_id, review_text, rating) {
   }
 }
 
-module.exports = {getClassifications, getInventoryByClassificationId, getInventoryByVehicleId, insertClassification, addInventory, getInventory, updateInventory, removeInventory, addFavorite, addReview};
+async function getReviewsByVehicleId(inv_id) {
+  try {
+    const sql = `
+      SELECT r.review_text, r.rating, a.account_firstname
+      FROM reviews r
+      JOIN account a ON r.account_id = a.account_id
+      WHERE r.inv_id = $1`;
+    const data = await pool.query(sql, [inv_id]);
+    
+    console.log("Data returned from DB:", data.rows); // Log the result
+    
+    return data.rows; // This should return an array
+  } catch (error) {
+    console.error("getReviewsByVehicleId error:", error);
+    throw new Error("Could not retrieve reviews");
+  }
+}
+
+module.exports = {getClassifications, getInventoryByClassificationId, getInventoryByVehicleId, insertClassification, addInventory, getInventory, updateInventory, removeInventory, addFavorite, addReview, getReviewsByVehicleId};

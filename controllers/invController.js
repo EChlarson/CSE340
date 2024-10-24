@@ -438,4 +438,37 @@ invCont.addReview =  async function (req, res, next) {
   }
 }
 
+invCont.reviewView = async function (req, res, next) {
+  const inv_id = req.body.invId || req.params.invId;
+  console.log("reviewView", inv_id);
+
+  try {
+    let nav = await utilities.getNav()
+    const reviews = await invModel.getReviewsByVehicleId(inv_id);
+    console.log("Fetched Reviews:", reviews); // Add this to see what is being returned
+    
+    if (!Array.isArray(reviews) || reviews.length === 0) {
+      req.flash('notice', 'No reviews available for this vehicle.');
+      return res.render('./inventory/reviews', {
+        title: 'Vehicle Reviews',
+        nav,
+        reviewsGrid: '<p>No reviews available.</p>',
+        inv_id
+      });
+    }
+
+    const reviewsGrid = await utilities.buildReviewsGrid(reviews);
+
+    res.render('./inventory/reviews', {
+      title: 'Vehicle Reviews',
+      nav,
+      reviewsGrid,
+      inv_id
+    });
+  } catch (error) {
+    console.error('Error fetching reviews:', error);
+    res.status(500).send('Error fetching reviews');
+  }
+};
+
 module.exports = invCont
