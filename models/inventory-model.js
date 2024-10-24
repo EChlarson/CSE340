@@ -139,25 +139,6 @@ async function addFavorite(account_id, inv_id) {
 }
 
 /* ***************************
-*  Get user's favorite items
-* ************************** */
-/* async function getFavoritesByUser(account_id) {
-  try {
-    const sql = `
-      SELECT i.inv_id, i.inv_make, i.inv_model, i.inv_price, i.inv_thumbnail 
-      FROM favorites f
-      JOIN inventory i ON f.inv_id = i.inv_id
-      WHERE f.account_id = $1
-    `;
-    const data = await pool.query(sql, [account_id]);
-    return data.rows;  
-  } catch (error) {
-    console.error("Error retrieving favorites:", error);
-    throw new Error("Could not retrieve favorites");
-  }
-} */
-
-/* ***************************
  *  Insert Review in Database
 ****************************/
 async function addReview(inv_id, account_id, review_text, rating) {
