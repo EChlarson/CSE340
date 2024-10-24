@@ -15,13 +15,25 @@
 <%# Main Content %>
 <%- detailsGrid %>
 
-<form id="favButton" action="/inv/favorites" method="post">
+<!-- <form id="favButton" action="/inv/favorites" method="post">
    <button type="submit">Add to Favorites</button>
    <input type="hidden" value="<%= inv_id %>" name="invId">
-</form>
+</form> -->
+
+
+<% if (locals.isFavorite) { %>
+   <!-- Already in Favorites -->
+   <button type="button" disabled>Already in Favorites</button>
+<% } else { %>
+   <!-- Add to Favorites Form -->
+   <form id="favButton" action="/inv/favorites" method="post">
+      <button type="submit">Add to Favorites</button>
+      <input type="hidden" value="<%= inv_id %>" name="invId">
+   </form>
+<% } %>
 
 <form id="revButton" action="/inv/reviews/<%= inv_id %>" method="post">
-   <button type="submit">View Vehicle Reviews</button>
+    <button type="submit">View Vehicle Reviews</button>
 </form>
 
 <div class="userInfo">

@@ -171,4 +171,15 @@ async function getReviewsByVehicleId(inv_id) {
   }
 }
 
-module.exports = {getClassifications, getInventoryByClassificationId, getInventoryByVehicleId, insertClassification, addInventory, getInventory, updateInventory, removeInventory, addFavorite, addReview, getReviewsByVehicleId};
+async function checkIfFavorite(inv_id, account_id) {
+  try {
+    const sql = `SELECT * FROM favorites WHERE inv_id = $1 AND account_id = $2`;
+    const data = await pool.query(sql, [inv_id, account_id]);
+    return data.rowCount > 0; // Returns true if it's a favorite
+  } catch (error) {
+    console.error('Error checking if favorite:', error);
+    throw new Error('Could not check favorite status');
+  }
+}
+
+module.exports = {getClassifications, getInventoryByClassificationId, getInventoryByVehicleId, insertClassification, addInventory, getInventory, updateInventory, removeInventory, addFavorite, addReview, getReviewsByVehicleId, checkIfFavorite};

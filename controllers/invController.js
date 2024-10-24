@@ -35,6 +35,14 @@ invCont.buildByInventoryId = async function(req, res, next) {
   const detailsGrid = await utilities.buildDetailsGrid(detailsData)
   let nav = await utilities.getNav()
 
+  const account_id = res.locals.accountData.account_id; 
+  console.log(account_id)
+
+  let isFavorite = false;
+  if (account_id) {
+    isFavorite = await invModel.checkIfFavorite(inv_id, account_id); // Check if favorite
+  }
+
   const vehicleYear = detailsData.inv_year
   const vehicleMake = detailsData.inv_make
   const vehicleModel = detailsData.inv_model
@@ -44,8 +52,9 @@ invCont.buildByInventoryId = async function(req, res, next) {
     title: vehicleYear + " " + vehicleMake + " " + vehicleModel,
     nav,
     detailsGrid,
+    inv_id: detailsData.inv_id,
+    isFavorite, // Pass this to the template
     errors: null,
-    inv_id: detailsData.inv_id
   })
 }
 
@@ -438,6 +447,9 @@ invCont.addReview =  async function (req, res, next) {
   }
 }
 
+/* ***************************
+ *  View Reviews
+ * ************************** */
 invCont.reviewView = async function (req, res, next) {
   const inv_id = req.body.invId || req.params.invId;
   console.log("reviewView", inv_id);
