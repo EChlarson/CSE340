@@ -145,8 +145,8 @@ Util.buildFavoritesGrid = async function(favorites) {
             <span class="price">$${new Intl.NumberFormat('en-US').format(vehicle.inv_price)}</span>
             </div>
 
-            <form action="/account/favorites/remove/${vehicle.inv_id}" method="post" class="remove-favorite-form">
-            <button type="submit">Remove from Favorites</button>
+            <form action="/account/favorites/${account_id}" method="post" class="remove-favorite-form">
+              <button type="submit">Remove from Favorites</button>
             </form>
           </div>
         </li>

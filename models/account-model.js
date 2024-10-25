@@ -140,4 +140,17 @@ async function getFavoritesByUser(account_id) {
   }
 }
 
-module.exports = {registerAccount, checkExistingEmail, checkExistingEmailUpdate, getAccountByEmail, accountLogin, updateAccount, getAccountById, changePassword, getFavoritesByUser}
+async function removeFavorite(account_id, inv_id) {
+  const query = 'DELETE FROM favorites WHERE account_id = $1 AND inv_id = $2';
+  const values = [account_id, inv_id];
+
+  try {
+    const result = await pool.query(query, values);
+    return result;
+  } catch (error) {
+    console.error("Error in removeFavorite:", error);
+    throw error; // Pass the error to the controller to handle
+  }
+}
+
+module.exports = {registerAccount, checkExistingEmail, checkExistingEmailUpdate, getAccountByEmail, accountLogin, updateAccount, getAccountById, changePassword, getFavoritesByUser, removeFavorite}

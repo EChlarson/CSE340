@@ -71,4 +71,8 @@ router.post("/change-password",
 router.get("/favorites/:account_id", 
   utilities.handleErrors(accountController.showFavoritesView));
 
+//Delete a Favorite
+router.post('/favorites/:account_id', 
+  accountController.removeFavorite);
+
 module.exports = router;

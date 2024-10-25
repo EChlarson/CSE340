@@ -276,4 +276,28 @@ async function showFavoritesView(req, res, next) {
   }
 };
 
- module.exports = { buildLogin, buildRegistration, registerAccount, accountLogin, buildUser, buildAccManagement, buildAccountUpdate, accountUpdate, changePassword, accountLogout, showFavoritesView}
+async function removeFavorite(req, res, next) {
+  const account_id = res.locals.accountData.account_id;
+  const inv_id = req.body.invId;
+  console.log(inv_id, account_id); 
+
+  try {
+    await accountModel.removeFavorite(account_id, inv_id);
+
+    const favoritesGrid = await utilities.buildFavoritesGrid(favorites);
+    let nav = await utilities.getNav();
+    
+    req.flash("notice", "Vehicle removed from favorites list.")
+      res.render("./account/favorites", {
+        title: "My Favorites",
+        nav, 
+        favoritesGrid, 
+        errors: null
+      })
+  } catch (error) {
+    console.error("Error removing favorite:", error);
+    res.status(500).send("Server error.");
+  }
+};
+
+ module.exports = { buildLogin, buildRegistration, registerAccount, accountLogin, buildUser, buildAccManagement, buildAccountUpdate, accountUpdate, changePassword, accountLogout, showFavoritesView, removeFavorite}
