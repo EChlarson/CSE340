@@ -121,9 +121,9 @@ Util.getInv = async function (req, res, next) {
 /* **************************************
 * Build Favorites View
 * ************************************ */
-Util.buildFavoritesGrid = async function(favorites) {
+Util.buildFavoritesGrid = async function(favorites, account_id) {
   let grid = '';
-  console.log(favorites);
+  console.log(favorites, account_id);
 
   // Check if favorites is a valid array
   if (Array.isArray(favorites) && favorites.length > 0) {
@@ -147,6 +147,7 @@ Util.buildFavoritesGrid = async function(favorites) {
 
             <form action="/account/favorites/${account_id}" method="post" class="remove-favorite-form">
               <button type="submit">Remove from Favorites</button>
+              <input type="hidden" value="${vehicle.inv_id}" name="invId">
             </form>
           </div>
         </li>

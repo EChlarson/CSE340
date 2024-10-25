@@ -260,7 +260,7 @@ async function showFavoritesView(req, res, next) {
     }
 
     // Pass favorites data to the view and build the grid
-    const favoritesGrid = await utilities.buildFavoritesGrid(favorites);
+    const favoritesGrid = await utilities.buildFavoritesGrid(favorites, account_id);
     let nav = await utilities.getNav();
 
     res.render("account/favorites", { 
@@ -284,9 +284,15 @@ async function removeFavorite(req, res, next) {
   try {
     await accountModel.removeFavorite(account_id, inv_id);
 
-    const favoritesGrid = await utilities.buildFavoritesGrid(favorites);
+    const favorites = await accountModel.getFavoritesByUser(account_id);
+  
+      if (!favorites || favorites.length === 0) {
+        req.flash("notice", "No favorite vehicles found.");
+      }
+
+    const favoritesGrid = await utilities.buildFavoritesGrid(favorites, account_id);
     let nav = await utilities.getNav();
-    
+
     req.flash("notice", "Vehicle removed from favorites list.")
       res.render("./account/favorites", {
         title: "My Favorites",

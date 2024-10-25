@@ -35,11 +35,10 @@ invCont.buildByInventoryId = async function(req, res, next) {
   const detailsGrid = await utilities.buildDetailsGrid(detailsData)
   let nav = await utilities.getNav()
 
-  const account_id = res.locals.accountData.account_id; 
-  console.log(account_id)
-
-  let isFavorite = false;
-  if (account_id) {
+  let account_id = null
+  let isFavorite = null
+  if ('accountData' in res.locals) {
+    account_id = res.locals.accountData.account_id;
     isFavorite = await invModel.checkIfFavorite(inv_id, account_id); // Check if favorite
   }
 
