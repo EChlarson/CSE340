@@ -466,6 +466,18 @@ hr {
   body {
     padding: 10% 12%;
   }
+
+  nav {
+    height: 2rem;
+  }
+
+  nav ul {
+    padding: 0.15rem 1rem;
+  }
+
+  nav a {
+    font-size: 14px;
+  }
   
   .heroRight {
     left: 42%;
@@ -520,11 +532,11 @@ hr {
     font-size: 20px;
   }
 
-  nav ul li a {
-    font-size: 14px;
+  nav {
+    height: 6rem;
   }
 
-  .siteName a {
+    .siteName a {
     font-size: 30px;
   }
 
