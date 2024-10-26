@@ -88,6 +88,10 @@ nav ul li a{
   cursor: pointer;
 }
 
+.active {
+  border-bottom: 0.25rem solid white;
+}
+
 /* Footer */
 #siteLinks h3{
   font-size: 20px;

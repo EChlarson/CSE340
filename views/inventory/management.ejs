@@ -25,6 +25,7 @@
    <p>Please select a classification from the list to view the items associated with it.</p>
    <label for="classification">Classification:</label>
    <select id="classification">
+      <option value=''>Choose a Classification</option>
       <% for(var i=0; i<classification.rowCount; i++) {%>
       <option value="<%= classification.rows[i].classification_id %>">
         <%= classification.rows[i].classification_name %>
