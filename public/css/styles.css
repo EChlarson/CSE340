@@ -373,6 +373,11 @@ hr {
   margin-bottom: 2rem;
 }
 
+/* accManagement */
+.remove-favorite-form {
+  margin: 2rem;
+}
+
 /* Responsive */
 @media (max-width: 1600px) {
    .upgrade img {
