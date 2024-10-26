@@ -247,8 +247,8 @@ hr {
   display: flex;
 }
 
-#detailsLeft,
-#detailsRight {
+.detailsLeft,
+.detailsRight {
   margin: 1rem;
   padding: 0.5rem;
 }
@@ -259,16 +259,22 @@ hr {
   cursor: default;
 }
 
-#detailsLeft {
+.detailsLeft {
   width: 100%;
   height: auto;
   overflow: hidden;
 }
 
-#detailsLeft img {
+.detailsLeft img {
   max-width: 100%;
   height: auto;
   display: block;
+  margin: 0.5rem auto;
+}
+
+#favButton, 
+#revButton {
+  margin: 1rem;
 }
 
 /* Login */
